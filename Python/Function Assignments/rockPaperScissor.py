@@ -44,6 +44,9 @@ Pick a choice:
     2. Paper
     3. Scissor
     """))
+    if U not in [1,2,3]:
+        print("Invalid Input!")
+        exit()
     return U
 
 #function to get the computer's choice
