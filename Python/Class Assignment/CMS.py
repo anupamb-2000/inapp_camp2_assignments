@@ -15,6 +15,9 @@
 #Create inherited classes "OP" and "NonOP". "OP" should have the additional Admit function and NonOP a function to generate an OP Ticket
 #with incrementing no. for every patient.
 
+import random
+
+
 class CMS:
     patientID = 0
     patients = {}
@@ -37,7 +40,7 @@ class CMS:
             print(f"Blood Group : {CMS.patients[patient][4]}")
 
     def search(self):
-        searchID = input("Enter ID to search : ")
+        searchID = int(input("Enter ID to search : "))
         if(searchID in CMS.patients.keys()):
             print(f"ID : {searchID}")
             print(f"Name : {CMS.patients[searchID][0]}")
@@ -49,10 +52,10 @@ class CMS:
             print("No record found!")
 
     def delete(self):
-        deleteID = input("Enter ID to delete : ")
+        deleteID = int(input("Enter ID to delete : "))
         if(deleteID in CMS.patients.keys()):
             del CMS.patients[deleteID]
-            print(CMS.patients)
+            print("Record deleted!")
         else:
             print("No record found!")
 
@@ -64,10 +67,6 @@ class CMS:
             print("No record found!")
         
 
-# patient1.listPatients()
-# patient.search()
-# patient.delete()
-# patient.update("123", "Tom", "Male", 16, "03-07-2007", "A+ve")
 
 class OP(CMS):
     def admit(self, id, department, days):
@@ -78,12 +77,20 @@ class OP(CMS):
         super().admittedPatients[self.ID].extend([self.department, self.days])
         print(super().admittedPatients)
 
-patient1 = OP()
-patient2 = CMS()
-patient1.register("Tom", "Male", 15, "03-07-2007", "A+")
-patient2.register("Jane", "Female", 18, "04-07-2004", "A+")
-patient1.admit(patient1.ID, "Dermatology", 5)
 
 class NonOP(CMS):
     def generateOP(self):
-        pass
+        self.OPToken = random.randint(1000, 9999)
+        print(f"OP Token : {self.OPToken}")
+
+patient1 = OP()
+patient2 = CMS()
+patient3 = NonOP()
+patient1.register("Tom", "Male", 15, "03-07-2007", "A+")
+patient2.register("Jane", "Female", 18, "04-07-2004", "A+")
+patient1.admit(patient1.ID, "Dermatology", 5)
+patient1.listPatients()
+patient2.search()
+patient2.delete()
+patient1.update(1, "Tom", "Male", 16, "03-07-2007", "A+ve")
+patient3.generateOP()
