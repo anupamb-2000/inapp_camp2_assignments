@@ -12,8 +12,8 @@ class Calculator(ABC):
 
     @operandA.setter
     def operandA(self, num):
-        if(isinstance(num, int)):
-            self.__num1 = num
+        if(num.isdigit()):
+            self.__num1 = int(num)
         else:
             raise ValueError(f"Invalid operand(A)!")
 
@@ -23,8 +23,8 @@ class Calculator(ABC):
 
     @operandB.setter
     def operandB(self, num):
-        if(isinstance(num, int)):
-            self.__num2 = num
+        if(num.isdigit()):
+            self.__num2 = int(num)
         else:
             raise ValueError(f"Invalid operand(B)!")
 
@@ -51,6 +51,6 @@ mul = CalcProd()
 div = CalcQuo()
 #calling the methods
 for operation in [add, sub, mul, div]:
-    operation.operandA = 10
-    operation.operandB = 5
+    operation.operandA = "10"
+    operation.operandB = "5"
     operation.calculator()
