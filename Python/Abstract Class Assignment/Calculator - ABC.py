@@ -42,7 +42,7 @@ class CalcProd(Calculator):
 
 class CalcQuo(Calculator):
     def calculator(self):
-        print(f"Division result : {self.operandA + self.operandB}")
+        print(f"Division result : {self.operandA / self.operandB}")
 
 #creating the object
 add = CalcSum()
