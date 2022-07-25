@@ -51,10 +51,8 @@ def searchname():
         names.append(record.split("\n")[0].split(",")[0])
     name = input("Enter name of contact to search : ")
     if(name in names):
-        for record in phoneBook:
-            entry = record.split("\n")[0].split(",")
-            if entry[0] == name:
-                print(f" Name : {entry[0]}, Number : {entry[1]}")
+        entry = phoneBook[names.index(name)].split("\n")[0].split(",")
+        print(f" Name : {entry[0]}, Number : {entry[1]}")
     else:
         print("No such record found!")
 
