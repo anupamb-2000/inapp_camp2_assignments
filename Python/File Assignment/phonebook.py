@@ -10,25 +10,16 @@
 #add()
 #delete()
 #sort()
+from operator import index, indexOf
 from unicodedata import name
 
 
 def sort():
     f = open("phonebook.txt", "r")
     phoneBook = f.readlines()
-    names = []
-    entries = []
-    for record in phoneBook:
+    for record in sorted(phoneBook):
         entry = record.split("\n")[0].split(",")
-        entries.append(entry)
-        names.append(entry[0])
-    # names = sorted(names)
-    # print(list(zip(names, entries))) #zip the listes together
-    # print(list(sorted(zip(names, entries)))) #sort the combined list based on the first list
-    # print(list(zip(*sorted(zip(names, entries))))) #unzip the sorted list into two seperate lists
-    names, entries = zip(*sorted(zip(names, entries)))
-    for entry in entries:
-        print(f" Name : {entry[0]}\n Number : {entry[1]}")
+        print(f" Name : {entry[0]}, Number : {entry[1]}")
     f.close()
 def add():
     f = open("phonebook.txt", "a")
@@ -56,7 +47,6 @@ def searchname():
     phoneBook = f.readlines()
     f.close()
     names = []
-    print(names)
     for record in phoneBook:
         names.append(record.split("\n")[0].split(",")[0])
     name = input("Enter name of contact to search : ")
@@ -64,7 +54,7 @@ def searchname():
         for record in phoneBook:
             entry = record.split("\n")[0].split(",")
             if entry[0] == name:
-                print(f" Name : {entry[0]}\n Number : {entry[1]}")
+                print(f" Name : {entry[0]}, Number : {entry[1]}")
     else:
         print("No such record found!")
 
@@ -76,12 +66,11 @@ def searchno():
     for record in phoneBook:
         numbers.append(record.split("\n")[0].split(",")[1])
     number = input("Enter number of contact to search : ")
-    for record in phoneBook:
-        if(number in numbers):
-            entry = record.split("\n")[0].split(",")
-            print(f" Name : {entry[0]}\n Number : {entry[1]}")
-        else:
-            print("No such record found!")
+    if(number in numbers):
+        entry = phoneBook[numbers.index(number)].split("\n")[0].split(",")
+        print(f" Name : {entry[0]}, Number : {entry[1]}")
+    else:
+        print("No such record found!")
 
 
 #Displaying Menu for the user
