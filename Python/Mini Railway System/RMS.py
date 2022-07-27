@@ -16,4 +16,14 @@
 # If a passenger is unable to get a ticket, then he may be wait listed in
 # the train travelling to his destination provided he wants it. Only two
 # wait listed tickets are allowed per train.
+import pyodbc
 
+class Train:
+    def __init__(self, name, start, end):
+        self.name = name
+        self.start = start
+        self.end = end
+
+TVM_ALP = Train(TVM_ALP, TVM, ALP)
+TVM_ERN = Train(TVM_ERN, TVM, ERN)
+TVM_KZK = Train(TVM_KZK, TVM, KZK)  
