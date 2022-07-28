@@ -18,12 +18,19 @@
 # wait listed tickets are allowed per train.
 import pyodbc
 
-class Train:
-    def __init__(self, name, start, end):
+#create a connection string
+myConString = 'Driver={SQL Server};Server=DESKTOP-517KMB6\SQLEXPRESS;Database=railways_db;Trusted_Connection=yes;'
+#create a connection with the connection string
+myconn = pyodbc.connect(myConString)
+
+
+class Booking:
+    def __init__(self, name, start, end, seats):
         self.name = name
         self.start = start
         self.end = end
+        self.seats = seats
+    
+    def bookTicket(self, end):
+        pass
 
-TVM_ALP = Train(TVM_ALP, TVM, ALP)
-TVM_ERN = Train(TVM_ERN, TVM, ERN)
-TVM_KZK = Train(TVM_KZK, TVM, KZK)  
